@@ -1,5 +1,5 @@
 from models.data import users
-from utils.crud import read, add_user, search, remove_user
+from utils.crud import read, add_user, search, remove_user, map_single_users, map_all_users
 
 
 
@@ -8,14 +8,20 @@ if __name__ == '__main__':
     print(f'witaj {users[0]["name"]}')
 
     while True:
-        print('0. zakończz program ')
+        print('0. Zakończ program ')
         print('1. Wyświetl znajomych ')
         print('2. Dodaj znajomego ')
         print('3. Szukaj znajomego ')
         print('4. Usuń znajomego ')
+        print('6. Wygeneruj mapę dla każdego użytkownika')
+        print('7.Wyświetl zbiorczą mape')
         menu_option=input('wybierz opcje menu: ')
         if menu_option == '0':break
         if menu_option == '1':read(users)
         if menu_option == '2':add_user(users)
         if menu_option == '3':search(users)
         if menu_option == '4':remove_user(users)
+        if menu_option == '6':
+            for user in users:
+                map_single_users(user['name'], user['post'], user['location'])
+        if menu_option == '7':map_all_users(users)
